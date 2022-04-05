@@ -30,4 +30,13 @@ private:
 	class UCameraComponent* Camera;
 
 	void Move(float Value);
+
+	void Turn(float Value);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
+	float MoveSpeed = 500.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
+	float TurnSpeed = 100.f;
+
 };

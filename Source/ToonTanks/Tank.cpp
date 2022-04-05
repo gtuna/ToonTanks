@@ -2,6 +2,7 @@
 
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "Tank.h"
 
 ATank::ATank()
@@ -11,20 +12,36 @@ ATank::ATank()
 
     Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
     Camera->SetupAttachment(SpringArm);
-    UE_LOG(LogTemp, Warning, TEXT("TUNA DEBUG Value: %f"), 10000.f);
 
 }
 
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
     Super::SetupPlayerInputComponent(PlayerInputComponent);
-    UE_LOG(LogTemp, Warning, TEXT("TUNA DEBUG Value: %f"), 55555.f);
 
     PlayerInputComponent->BindAxis(("MoveForward"), this, &ATank::Move);
+    PlayerInputComponent->BindAxis(("Turn"), this, &ATank::Turn);
 }
 
 void ATank::Move(float Value)
 {
-    UE_LOG(LogTemp, Warning, TEXT("Value: %f"), Value);
+    FVector DeltaLocation = FVector::ZeroVector;
+    float DeltaTime = UGameplayStatics::GetWorldDeltaSeconds(this);
+
+    DeltaLocation.X = Value * MoveSpeed * DeltaTime;
+
+   	AddActorLocalOffset(DeltaLocation);
+}
+
+void ATank::Turn(float Value)
+{   
+    FRotator DeltaRotation = FRotator::ZeroRotator;
+
+    // float DeltaTime = GetWorld()->GetDeltaSeconds(); 
+    float DeltaTime = UGameplayStatics::GetWorldDeltaSeconds(this);
+
+    DeltaRotation.Yaw = Value * TurnSpeed * DeltaTime;
+
+    AddActorLocalRotation(DeltaRotation);
 }
 

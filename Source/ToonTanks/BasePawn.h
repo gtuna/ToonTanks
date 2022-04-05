@@ -44,7 +44,7 @@ private:
 	//editanywhere: allows you to edit the value in the editor, 
 	// blueprintreadwrite: allows you to read and write the value in the blueprint,
 	// meta: allows you to add meta data to the property
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true")) 
-	float MoveSpeed = 100.0f;
+	// UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true")) 
+	// float MoveSpeed = 100.0f;
 	
 };
