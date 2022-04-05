@@ -23,10 +23,7 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+	
 private:
 	
 	// saying "class UCapsuleComponent": we are using "Forward Declaration" to not to include ucapsulecomp in the header file.
