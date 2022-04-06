@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Camera/CameraComponent.h"
+#include "DrawDebugHelpers.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Tank.h"
@@ -21,6 +22,43 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
     PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
     PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ATank::Turn);
+}
+
+// Called every frame
+void ATank::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+    FHitResult HitResult;
+    if (PlayerControllerRef)
+    {
+        PlayerControllerRef->GetHitResultUnderCursor(
+            ECollisionChannel::ECC_Visibility, 
+            false, 
+            HitResult);
+    }
+    
+
+    DrawDebugSphere(
+        GetWorld(), 
+        HitResult.ImpactPoint, 
+        10.f, 
+        10, 
+        FColor::Red, 
+        false, 
+        -1.f); //a sphere in single frame
+    
+
+}
+
+
+// Called when the game starts or when spawned
+void ATank::BeginPlay()
+{
+	Super::BeginPlay();
+
+    // GetController is on the APawn class , our player is a APlayerController not AController so we need to cast it to APlayerController
+    PlayerControllerRef = Cast<APlayerController>(GetController());
 }
 
 void ATank::Move(float Value)

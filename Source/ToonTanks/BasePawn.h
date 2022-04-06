@@ -15,15 +15,6 @@ public:
 	// Sets default values for this pawn's properties
 	ABasePawn();
 
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-	
 private:
 	
 	// saying "class UCapsuleComponent": we are using "Forward Declaration" to not to include ucapsulecomp in the header file.
