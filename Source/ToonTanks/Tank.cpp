@@ -41,7 +41,6 @@ void ATank::Tick(float DeltaTime)
         RotateTurret(HitResult.ImpactPoint);
     }
     
-    
 
 }
 
