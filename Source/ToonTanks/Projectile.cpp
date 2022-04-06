@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Components/CapsuleComponent.h"
+#include "GameFramework/ProjectileMovementComponent.h"
 #include "Projectile.h"
 
 // Sets default values
@@ -11,6 +12,10 @@ AProjectile::AProjectile()
 
 	ProjectileMeshComp =  CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Projectile Mesh"));
 	RootComponent = ProjectileMeshComp;
+
+	ProjectileMovementComp = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movement Component"));
+	ProjectileMovementComp->InitialSpeed = 3000.0f;
+	ProjectileMovementComp->MaxSpeed = 3000.0f;
 }
 
 // Called when the game starts or when spawned
