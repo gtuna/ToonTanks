@@ -19,8 +19,8 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
     Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-    PlayerInputComponent->BindAxis(("MoveForward"), this, &ATank::Move);
-    PlayerInputComponent->BindAxis(("Turn"), this, &ATank::Turn);
+    PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
+    PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ATank::Turn);
 }
 
 void ATank::Move(float Value)
@@ -30,7 +30,7 @@ void ATank::Move(float Value)
 
     DeltaLocation.X = Value * MoveSpeed * DeltaTime;
 
-   	AddActorLocalOffset(DeltaLocation);
+   	AddActorLocalOffset(DeltaLocation, true);
 }
 
 void ATank::Turn(float Value)
@@ -42,6 +42,6 @@ void ATank::Turn(float Value)
 
     DeltaRotation.Yaw = Value * TurnSpeed * DeltaTime;
 
-    AddActorLocalRotation(DeltaRotation);
+    AddActorLocalRotation(DeltaRotation, true);
 }
 
