@@ -22,6 +22,8 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
     PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
     PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ATank::Turn);
+   // PlayerInputComponent->BindAxis(TEXT("RotateTurret"), this, &ATank::RotateTurret);
+
 }
 
 // Called every frame
@@ -36,17 +38,9 @@ void ATank::Tick(float DeltaTime)
             ECollisionChannel::ECC_Visibility, 
             false, 
             HitResult);
+        RotateTurret(HitResult.ImpactPoint);
     }
     
-
-    DrawDebugSphere(
-        GetWorld(), 
-        HitResult.ImpactPoint, 
-        10.f, 
-        10, 
-        FColor::Red, 
-        false, 
-        -1.f); //a sphere in single frame
     
 
 }

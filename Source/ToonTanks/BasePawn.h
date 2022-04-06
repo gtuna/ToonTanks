@@ -15,6 +15,10 @@ public:
 	// Sets default values for this pawn's properties
 	ABasePawn();
 
+protected:
+
+    void RotateTurret(FVector LookAtTarget);
+
 private:
 	
 	// saying "class UCapsuleComponent": we are using "Forward Declaration" to not to include ucapsulecomp in the header file.
