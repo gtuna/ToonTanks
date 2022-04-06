@@ -2,6 +2,7 @@
 
 #include "BasePawn.h"
 #include "Components/CapsuleComponent.h"
+#include "DrawDebugHelpers.h"
 
 // Sets default values
 ABasePawn::ABasePawn()
@@ -27,4 +28,10 @@ void ABasePawn::RotateTurret(FVector LookAtTarget)
 	FVector ToTarget = (LookAtTarget - TurretMesh->GetComponentLocation()); //.GetSafeNormal();
 	FRotator LookAtRotation = FRotator(0.0f, ToTarget.Rotation().Yaw, 0.0f);
 	TurretMesh->SetWorldRotation(LookAtRotation);
+}
+
+void ABasePawn::Fire()
+{	
+	DrawDebugSphere(GetWorld(), ProjectileSpawnPoint->GetComponentLocation(), 10.0f, 12, FColor::Red, false, 3.f);
+
 }
