@@ -32,9 +32,9 @@ void ATank::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
     FHitResult HitResult;
-    if (PlayerControllerRef)
+    if (TankPlayerController)
     {
-        PlayerControllerRef->GetHitResultUnderCursor(
+        TankPlayerController->GetHitResultUnderCursor(
             ECollisionChannel::ECC_Visibility, 
             false, 
             HitResult);
@@ -44,6 +44,14 @@ void ATank::Tick(float DeltaTime)
 
 }
 
+void ATank::HandleDestruction()
+{
+    Super::HandleDestruction();
+
+    SetActorHiddenInGame(true);
+    SetActorTickEnabled(false);
+}
+
 
 // Called when the game starts or when spawned
 void ATank::BeginPlay()
@@ -51,7 +59,7 @@ void ATank::BeginPlay()
 	Super::BeginPlay();
 
     // GetController is on the APawn class , our player is a APlayerController not AController so we need to cast it to APlayerController
-    PlayerControllerRef = Cast<APlayerController>(GetController());
+    TankPlayerController = Cast<APlayerController>(GetController());
 }
 
 void ATank::Move(float Value)
