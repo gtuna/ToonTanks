@@ -23,6 +23,10 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	//BlueprintImplementableEvent: dont need to give function body, but we can call it from cpp class
+	UFUNCTION(BlueprintImplementableEvent, Category = "GameMode")
+	void StartGame();
+
 private:
 	class ATank* Tank;
 	class AToonTanksPlayerController* ToonTanksPlayerController;
