@@ -23,7 +23,7 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	UStaticMeshComponent* ProjectileMeshComp; 
 
-	UPROPERTY(VisibleAnywhere, Category = "Movemeny")
+	UPROPERTY(VisibleAnywhere, Category = "Movement")
 	class UProjectileMovementComponent* ProjectileMovementComp;
 
 	UFUNCTION()
@@ -31,6 +31,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float Damage = 50.f;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	class UParticleSystem* HitParticles;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
