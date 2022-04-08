@@ -49,4 +49,7 @@ private:
 	//allows us have a c++ variable that represents a type. and  a type can be based on AProjectile even a blueprint classtype based on this
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	TSubclassOf<class AProjectile> ProjectileClass;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	class UParticleSystem* DeathParticles;
 };
